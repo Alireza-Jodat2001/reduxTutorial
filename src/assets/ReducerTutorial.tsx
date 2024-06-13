@@ -1,9 +1,10 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import BackToHomeBtn from './sharedComponents/BackToHomeBtn';
 import { Box, Stack, Typography } from '@mui/material';
+import { thunk } from 'redux-thunk';
 
 export default function ReducerTutorial() {
-    ((): void => {
+    (): void => {
         interface dataType {
             name?: string;
             family?: string;
@@ -79,7 +80,100 @@ export default function ReducerTutorial() {
 
         // const showBalanceEl = phoneNumber => <Box>{phoneNumber}</Box>;
         // export default connect({ phoneNumber: state.phoneNumber })(showBalanceEl)
-    })();
+    };
+
+    // Redux Middleware and Redux Thunks
+    (): void => {
+        // Reducer info
+        interface infoType {
+            name?: string;
+            family?: string;
+            age?: number;
+        }
+
+        const initialStateInfo: infoType = {
+            name: '',
+            family: '',
+            age: 0,
+        };
+
+        interface actionInfoType {
+            type: string;
+            data: infoType;
+        }
+
+        function info(state = initialStateInfo, action: actionInfoType) {
+            switch (action.type) {
+                case 'changeName':
+                case 'changeFamily':
+                case 'changeAge':
+                    return { ...state, ...action.data };
+                default:
+                    return state;
+            }
+        }
+
+        // Reducer phone number
+        interface phoneNumberType {
+            phoneNumber?: number;
+        }
+
+        const initialStateNumber: phoneNumberType = {
+            phoneNumber: 0,
+        };
+
+        interface actionNumberType {
+            type: string;
+            data: phoneNumberType;
+        }
+
+        function phoneNumber(
+            state = initialStateNumber,
+            action: actionNumberType
+        ) {
+            switch (action.type) {
+                case 'changePhoneNumber':
+                    return { ...state, ...action.data };
+                default:
+                    return state;
+            }
+        }
+
+        // Combine Stores
+        const rootReducer = combineReducers({
+            info,
+            phoneNumber,
+        });
+
+        // ApplyMiddleware & Thunk
+        const combineStore = createStore(rootReducer, applyMiddleware(thunk));
+
+        // Action Creator
+        function changePhoneNumber(phoneNumber: number) {
+            if (phoneNumber === 935_922_7339)
+                return {
+                    type: 'changePhoneNumber',
+                    data: { phoneNumber },
+                };
+
+            return async function (dispatch, getState) {
+                const res = await fetch(
+                    'https://jsonplaceholder.typicode.com/users'
+                );
+                const data = await res.json();
+                const newPhoneNumber = data[5].id;
+
+                // Dispatch
+                dispatch({
+                    type: 'changePhoneNumber',
+                    data: { phoneNumber: newPhoneNumber },
+                });
+            };
+        }
+
+        // Dispatch
+        combineStore.dispatch(changePhoneNumber(903_7180_223));
+    };
 
     return (
         <Box textAlign="center">
