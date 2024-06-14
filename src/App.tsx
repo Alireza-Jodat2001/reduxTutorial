@@ -1,5 +1,5 @@
-import AppRoutes from './assets/AppRoutes';
-import MainThemeProvider from './assets/Theming';
+import AppRoutes from './assets/appRoute/AppRoutes';
+import MainThemeProvider from './assets/themming/Theming';
 
 export default function App() {
     return (

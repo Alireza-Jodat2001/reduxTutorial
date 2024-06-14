@@ -1,5 +1,5 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
-import BackToHomeBtn from './sharedComponents/BackToHomeBtn';
+import BackToHomeBtn from '../../sharedComponents/BackToHomeBtn';
 import { Box, Stack, Typography } from '@mui/material';
 import { thunk } from 'redux-thunk';
 
