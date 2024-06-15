@@ -1,21 +1,18 @@
-// Mui
 import { Box, Stack, Typography } from '@mui/material';
-
-// Shared Components
 import BackToHomeBtn from '../../sharedComponents/BackToHomeBtn';
-
-// Redux
 import { changeName_Age } from './infoReducer/infoSlice';
 import { infoOperations } from './infoReducer/infoStore';
+import { useLoaderData, useNavigation } from 'react-router-dom';
 
 export default function ReduxToolkitTutorial() {
-    // Dispatch & UseSelector (Info)
     const { dispatch, useTypedSelector } = infoOperations();
+    const users = useLoaderData();
+    const navigation = useNavigation();
+    const isLoading = navigation.state === 'loading';
+    const { name: infoName, age: infoAge } = useTypedSelector(
+        ({ info }) => info
+    );
 
-    // Name State Info
-    const name = useTypedSelector(state => state.info.name);
-
-    // Dispatching
     dispatch(changeName_Age('alireza', 23));
 
     return (

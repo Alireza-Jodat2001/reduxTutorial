@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
+import { TextField } from '@mui/material';
 
 const pages = [
     { page: 'Redux Tutorial', path: '/Redux-Tutorial' },
@@ -44,6 +45,12 @@ function ResponsiveAppBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    function submitForm(e: React.FormEvent): void {
+        e.preventDefault();
+
+        ReducerBtnNavigation(`/ReduxToolkit-Tutorial/${12}`);
+    }
 
     return (
         <AppBar position="static">
@@ -117,6 +124,13 @@ function ResponsiveAppBar() {
                             ))}
                         </Menu>
                     </Box>
+                    <form onSubmit={submitForm}>
+                        <TextField
+                            id="outlined-required"
+                            label="Search"
+                            defaultValue=""
+                        />
+                    </form>
                     <AdbIcon
                         sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
                     />
