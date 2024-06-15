@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface infoInitialType {
-    name?: string;
-    age?: number;
+export interface infoInitialType {
+    name: string;
+    age: number;
 }
 
 const initialStateInfo: infoInitialType = {
