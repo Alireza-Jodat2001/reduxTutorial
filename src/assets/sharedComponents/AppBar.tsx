@@ -5,19 +5,20 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+// import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import { TextField } from '@mui/material';
 
 const pages = [
     { page: 'Redux Tutorial', path: '/Redux-Tutorial' },
     { page: 'Redux Toolkit Tutorial', path: '/ReduxToolkit-Tutorial' },
+    { page: 'New Order Page', path: '/ReduxToolkit-Tutorial/Order/New' },
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -56,9 +57,9 @@ function ResponsiveAppBar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon
+                    {/* <AdbIcon
                         sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
-                    />
+                    /> */}
                     <Button onClick={() => ReducerBtnNavigation('/')}>
                         <Typography
                             variant="h6"
@@ -91,7 +92,7 @@ function ResponsiveAppBar() {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon />
+                            {/* <MenuIcon /> */}
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -131,9 +132,9 @@ function ResponsiveAppBar() {
                             defaultValue=""
                         />
                     </form>
-                    <AdbIcon
+                    {/* <AdbIcon
                         sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
-                    />
+                    /> */}
                     <Button onClick={() => ReducerBtnNavigation('/')}>
                         <Typography
                             variant="h5"
